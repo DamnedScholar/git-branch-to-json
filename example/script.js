@@ -1,0 +1,1 @@
+const gitBranchToJson = require(`../`);
