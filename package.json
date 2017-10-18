@@ -1,6 +1,6 @@
 {
   "name": "git-branch-to-json",
-  "version": "0.1.0",
+  "version": "0.2.0-0",
   "description": "This package converts the output of `git branch` into a sensible JS object.",
   "main": "src/index.js",
   "files": [
