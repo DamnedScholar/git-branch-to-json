@@ -3,9 +3,9 @@
 const {exec} = require(`child_process`);
 const S = require(`string`)
 
-exports.branch = function () {
+exports.branch = function (path) {
   return new Promise(function (resolve, reject) {
-    exec(`git branch -avv`, {cwd: "D:/github/ev-fork/evennia"}, (err, stdout, stderr) => {
+    exec(`git branch -avv`, {cwd: path}, (err, stdout, stderr) => {
       object = []
       if (stdout) {
         rows = S(stdout).lines()
