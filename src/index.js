@@ -65,13 +65,36 @@ exports = {
     });
   },
 
-  checkout: function(options) {
+  checkout: function(path, options) {
     // Run `git checkout` with the provided options. In keeping with the goals of this package, this is intentionally limited to switching branches. It doesn't know anything about the proper usage of the command and will throw an exception on any invalid use.
 
     // Options:
-    //  branch (str) - The branch name (optional). Will match the shortName of a remote branch if there's no local branch by the same name.
-    //  commit (str) - The commit ID (optional). Only matches the short ID.
-    //  detach (bool) - The `--detach` flag.
-    //  force (bool) - The `--force` flag.
+    //   branch (str) - The branch name (optional). Will match the shortName of a remote branch if there's no local branch by the same name.
+    //   commit (str) - The commit ID (optional). Only matches the short ID.
+    //   detach (bool) - The `--detach` flag (optional, default false).
+    //   force (bool) - The `--force` flag (optional, default false).
+
+    // Branch and commit checkouts are mutually exclusive
+    if (options.branch && options.commit)
+
+
+    flags = ``
+
+    if (options.branch) {
+      flags += ` ` + options.branch
+    }
+    if (options.commit) {
+      flags += ` ` + options.branch
+    }
+
+    return new Promise(function (resolve, reject) {
+      exec(`git checkout` + flags, {cwd: path}, (err, stdout, stderr) => {
+        if (stdout) {
+          resolve(stdout);
+        }
+        else
+          reject(err);
+      })
+    });
   }
 }
